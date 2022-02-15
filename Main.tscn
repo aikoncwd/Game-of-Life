@@ -1,3 +1,98 @@
-[gd_scene format=2]
+[gd_scene load_steps=4 format=2]
 
-[node name="Main" type="Node2D"]
+[ext_resource path="res://Main.gd" type="Script" id=1]
+[ext_resource path="res://img/tileset.png" type="Texture" id=2]
+
+[sub_resource type="TileSet" id=1]
+0/name = "tileset.png 0"
+0/texture = ExtResource( 2 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 0, 0, 10, 10 )
+0/tile_mode = 0
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape_one_way = false
+0/shape_one_way_margin = 0.0
+0/shapes = [  ]
+0/z_index = 0
+1/name = "tileset.png 1"
+1/texture = ExtResource( 2 )
+1/tex_offset = Vector2( 0, 0 )
+1/modulate = Color( 1, 1, 1, 1 )
+1/region = Rect2( 10, 0, 10, 10 )
+1/tile_mode = 0
+1/occluder_offset = Vector2( 0, 0 )
+1/navigation_offset = Vector2( 0, 0 )
+1/shape_offset = Vector2( 0, 0 )
+1/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+1/shape_one_way = false
+1/shape_one_way_margin = 0.0
+1/shapes = [  ]
+1/z_index = 0
+
+[node name="Main" type="Control"]
+anchor_right = 1.0
+margin_bottom = 44.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TileMap" type="TileMap" parent="."]
+position = Vector2( 0, 50 )
+tile_set = SubResource( 1 )
+cell_size = Vector2( 10, 10 )
+format = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = -8.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="button_startstop" type="Button" parent="HBoxContainer"]
+margin_right = 82.0
+margin_bottom = 32.0
+text = "Start / Stop"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="button_step" type="Button" parent="HBoxContainer"]
+margin_left = 86.0
+margin_right = 168.0
+margin_bottom = 32.0
+text = "Single Step"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="button_clear" type="Button" parent="HBoxContainer"]
+margin_left = 172.0
+margin_right = 256.0
+margin_bottom = 32.0
+text = "Clear board"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="button_random" type="Button" parent="HBoxContainer"]
+margin_left = 260.0
+margin_right = 364.0
+margin_bottom = 32.0
+text = "Random board"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="HBoxContainer/button_startstop" to="." method="_on_button_startstop_pressed"]
+[connection signal="pressed" from="HBoxContainer/button_step" to="." method="_on_button_step_pressed"]
+[connection signal="pressed" from="HBoxContainer/button_clear" to="." method="_on_button_clear_pressed"]
+[connection signal="pressed" from="HBoxContainer/button_random" to="." method="_on_button_random_pressed"]
