@@ -36,7 +36,7 @@ func get_living_neighbors(x, y):
 	for i in range(-1,2):
 		for j in range(-1,2):
 			if i != 0 or j != 0:
-				if matrix[int(x + i + width) % width][int(y + j + height) % height]: vecinos += 1
+				vecinos += matrix[(x + i + width) % width][(y + j + height) % height]
 	return vecinos
 
 func step():
@@ -55,7 +55,7 @@ func step():
 	matrix = matrix_tmp.duplicate(true)
 
 func _input(event):
-	if event is InputEventMouseButton:
+	if event is InputEventMouseButton or !started:
 		var x = (get_global_mouse_position().x - $TileMap.position.x) / 10
 		var y = (get_global_mouse_position().y - $TileMap.position.y) / 10
 		
