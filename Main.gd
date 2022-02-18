@@ -45,10 +45,10 @@ func step():
 		for x in width:
 			var vecinos = get_living_neighbors(x,y)
 			if matrix[x][y]:
-				if vecinos < 2 or vecinos > 3:
-					matrix_tmp[x][y] = 0
-				elif vecinos == 2 or vecinos == 3:
+				if vecinos == 2 or vecinos == 3:
 					matrix_tmp[x][y] = 1
+				else:
+					matrix_tmp[x][y] = 0
 			elif vecinos == 3:
 				matrix_tmp[x][y] = 1
 	
@@ -68,6 +68,7 @@ func _input(event):
 			update_board()
 
 func _process(delta):
+	var fps = str(Engine.get_frames_per_second())
 	if started:
 		OS.set_window_title("Game of Life - Running")
 		step()
